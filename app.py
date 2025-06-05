@@ -9,8 +9,11 @@ texto_original = st.text_area("Cole aqui o texto que deseja limpar:", height=200
 palavras_personalizadas = st.text_input("Palavras/padrões a remover (separadas por vírgula)", value="Acréscimos:")
 
 def limpar_texto(texto, palavras):
-    for palavra in palavras:
-        texto = texto.replace(palavra, "")
+    import re
+
+for palavra in palavras_remover:
+    # Remove o padrão e o valor que vem após, até o próximo tab ou espaço
+    texto = re.sub(rf"{re.escape(palavra)}\s*R\$ [\d.,]+", "", texto)
     return texto
 
 if st.button("Limpar Texto"):
